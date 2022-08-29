@@ -1,0 +1,22 @@
+od.reader.jsonp_catalog(20130616, {
+    "power": 9409,
+    "monster": 5326,
+    "feat": 3271,
+    "item": 1963,
+    "background": 808,
+    "trap": 776,
+    "implement": 647,
+    "weapon": 631,
+    "paragonpath": 577,
+    "armor": 493,
+    "glossary": 457,
+    "ritual": 360,
+    "companion": 193,
+    "deity": 134,
+    "theme": 116,
+    "epicdestiny": 115,
+    "class": 77,
+    "disease": 69,
+    "race": 55,
+    "poison": 38
+})

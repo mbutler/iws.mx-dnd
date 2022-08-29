@@ -1,0 +1,3 @@
+od.reader.jsonp_batch_data(20160803, "poison", {
+    "poison7": "<h1 class=poison>Drow Poison<br><span class=level>Level 10 Poison</span></h1><p class=flavor><i>Distilled from demonic ichor in the temples of Lolth, this poison is the drow race's favorite means of acquiring new slaves.</i></p><p><b>Poison</b>        1250 gp<br><b>Attack:</b> +13 vs. Fortitude; the target takes a -2 penalty to attack rolls (save ends).<br><b><i>First Failed Saving Throw:</i></b> The target is also weakened (save ends).<br><b><i>Second Failed Saving Throw:</i></b> The target falls unconscious until the end of the encounter.<br></p><p class=publishedIn>Published in Dungeon Master's Guide, page(s) 51.</p>"
+})

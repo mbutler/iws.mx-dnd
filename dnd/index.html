@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<!---
+Complete sourcedode: https://github.com/Sheep-y/trpg-dnd-4e-db/
+-
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more details.
+A copy of the GNU Affero General Public License is built into this program, and is also available from <http://www.gnu.org/licenses/>.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title> Offline Compendium </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="P3P" content='CP="NOI NID CURa STP PRE"' /> <!-- nonident , non-identifiable, to support current activity (always), keep for stated purpose, preference data -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="author" href="https://github.com/Sheep-y/trpg-dnd-4e-db/" />
+    <link rel="manifest" href="4e_database_files/res/manifest.json" />
+    <link rel="icon" href="4e_database_files/res/icon.png" />
+    <link rel="license" href="https://www.gnu.org/licenses/agpl-3.0.en.html" hreflang="en" />
+    <link rel="help" href="?about" />
+    <link rel="search" href="?list" />
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            background-color: #fde8bd;
+            font: 14px sans-serif
+        }
+
+        html,
+        body {
+            color: black;
+            min-height: 100%;
+            width: 100%
+        }
+
+        html,
+        body,
+        div,
+        th,
+        td {
+            margin: 0;
+            padding: 0
+        }
+
+        a {
+            color: #600;
+            text-decoration: none
+        }
+
+        a:hover {
+            color: #D00;
+            text-decoration: underline
+        }
+
+        a:visited {
+            color: #822
+        }
+
+        button,
+        .button,
+        .button:visited {
+            background-color: #B7E9F7;
+            border-radius: 1ex;
+            border: 1px outset #888;
+            color: black;
+            cursor: pointer;
+            display: inline-block;
+            padding: .5ex 1ex;
+            text-decoration: none
+        }
+
+        .button:hover,
+        .button:focus,
+        button:hover,
+        button:focus {
+            border-color: red !important;
+            color: FireBrick !important;
+            cursor: pointer;
+            opacity: .85 !important
+        }
+
+        th {
+            text-align: left
+        }
+
+        figure {
+            margin: 0
+        }
+
+        mark {
+            background-color: yellow;
+            padding: 0 !important;
+            margin: 0 !important
+        }
+
+        .no_highlight mark {
+            background-color: transparent;
+            color: inherit
+        }
+
+        @media screen and (-ms-high-contrast:active) {
+            mark {
+                background-color: green;
+                color: white
+            }
+
+            .no_highlight mark {
+                background-color: transparent;
+                color: black
+            }
+        }
+
+        @media screen and (-ms-high-contrast:white-on-black) {
+            mark {
+                background-color: cyan;
+                color: black
+            }
+
+            .no_highlight mark {
+                background-color: transparent;
+                color: white
+            }
+        }
+
+        @media screen and (-ms-high-contrast:black-on-white) {
+            mark {
+                background-color: purple;
+                color: white
+            }
+
+            .no_highlight mark {
+                background-color: transparent;
+                color: black
+            }
+        }
+
+        .btn_prev,
+        .btn_next {
+            border-radius: 1cm;
+            font-size: 1cm;
+            height: 2cm;
+            width: 2cm;
+            margin: auto;
+            opacity: .3;
+            position: fixed;
+            top: 0;
+            left: 1ex;
+            bottom: 0;
+            right: 1ex;
+            z-index: 64
+        }
+
+        .btn_prev {
+            margin-left: 0
+        }
+
+        .btn_next {
+            margin-right: 0
+        }
+
+        @media(max-width:12cm) {
+
+            .btn_prev,
+            .btn_next {
+                border-radius: .5cm;
+                font-size: .5cm;
+                height: 1cm;
+                width: 1cm
+            }
+        }
+
+        #js_enable_pointer {
+            bottom: 44px;
+            color: red;
+            font: 96px 'Arial Unicode';
+            left: 68%;
+            left: calc(50% + 314px);
+            position: fixed;
+            transition: left 1s, bottom 1s
+        }
+
+        @media(max-width:1023px) {
+            #js_enable_pointer {
+                left: calc(50% + 200px)
+            }
+        }
+
+        @media(max-width:800px) {
+            #js_enable_pointer {
+                bottom: 70px;
+                left: calc(50% + 150px)
+            }
+        }
+
+        .right {
+            float: right
+        }
+
+        .left {
+            float: left
+        }
+
+        .hide {
+            display: none
+        }
+
+        @media print {
+            .no-print {
+                display: none
+            }
+        }
+
+        header {
+            background-color: black;
+            height: 40px;
+            overflow: visible;
+            position: fixed;
+            text-align: center;
+            top: 0;
+            width: 100%;
+            z-index: 1
+        }
+
+        header h1 {
+            color: white;
+            display: inline-block;
+            font-size: 150%;
+            font-weight: bold;
+            margin: 0;
+            max-width: calc(100vw - 140px);
+            overflow: hidden;
+            padding: 0;
+            white-space: nowrap
+        }
+
+        header button,
+        header .button {
+            border-radius: 2ex;
+            float: left;
+            font-weight: bold
+        }
+
+        header h1~button,
+        header h1~.button {
+            float: right
+        }
+
+        body>section {
+            background-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 200px 200px rgba(255, 224, 128, 0.5);
+            display: none;
+            margin-top: 40px;
+            min-height: calc(100vh - 40px);
+            width: 100%
+        }
+
+        body>section>* {
+            margin: 10px
+        }
+
+        body>section>header {
+            margin: 0 0 10px 0;
+            padding: .5em 1ex
+        }
+
+        button.pressable {
+            color: #666;
+            opacity: .7
+        }
+
+        button.pressable[aria-pressed="true"] {
+            color: #008;
+            opacity: 1
+        }
+    </style>
+    <link href="4e_database_files/res/style.css?2017-12-31T10:11:15Z" rel="stylesheet" />
+</head>
+
+<body>
+    <!--[if lte IE 11]>
+<h1> Please upgrade browser. </h1>
+<h1> 請升級瀏覽器。 </h1>
+<div style="display:none">
+<![endif]-->
+    <div id="loading" class='i18n' style='display:none;'>gui.loading</div>
+    <section id='action_script_error'>
+        <p>
+            <!-- This section is hidden by default (hide when noscript), is displayed immediately, and hidden by switch_action. -->
+            We are loading JavaScript code of the compendiun. <br /><br />
+            If you keep seeing this message even after clear cache and refresh, something may be wrong. <br />
+            You may try <a href="http://www.mozilla.org/firefox/">another</a> <a href="http://www.google.com/chrome/">browser</a> and re-export data with the <a href="https://github.com/Sheep-y/trpg-dnd-4e-db/releases">latest</a> 4e compendium downloader. <br />
+            If problem persists, please <a href="https://github.com/Sheep-y/trpg-dnd-4e-db/issues">file an issue report</a>, stating browser name and version.
+        </p>
+    </section>
+    <script>
+        (function() {
+            'use strict';
+            var doc = document,
+                lblError = doc.querySelector('#action_script_error');
+            lblError.style.display = 'block';
+            window.script_loaded = function script_loaded() {
+                if (!od) return script_error("Namespace does not exist.");
+                od.gui.init();
+                lblError.innerHTML = '';
+            };
+            window.script_error = function script_error(err) {
+                if (err) console.error(err);
+                if (typeof(err) !== 'string') err = '';
+                else err = '<br>' + err;
+                var lang = navigator.userLanguage || navigator.language || 'en';
+                if (location.protocol === "content:") {
+                    if (lang.startsWith('zh'))
+                        lblError.innerHTML = '<p>無法載入程序。請用像樣的檔案管理工具打開，例如 <a href="https://play.google.com/store/apps/details?id=com.estrongs.android.pop">ES File</a> 或 <a href="https://play.google.com/store/apps/details?id=com.ghisler.android.TotalCommander">Total Commander</a>。</p>';
+                    else
+                        lblError.innerHTML = '<p>Cannot load program script.  Please open with proper file manager such as <a href="https://play.google.com/store/apps/details?id=com.estrongs.android.pop">ES File</a> or <a href="https://play.google.com/store/apps/details?id=com.ghisler.android.TotalCommander">Total Commander</a>.</p>';
+                } else {
+                    if (lang.startsWith('zh'))
+                        lblError.innerHTML = '<p>程序錯誤。請更新瀏覽器或試用其他瀏覽器。' + err + '</p>';
+                    else
+                        lblError.innerHTML = '<p>Program script error.  Please upgrade browser or try another.' + err + '</p>';
+                }
+            };
+            window.od = {
+                action: {},
+                data_path: '4e_database_files'
+            };
+        })();
+    </script><noscript>
+        <h1 lang='en'> Please enable JavaScript </h1>
+        <h1 lang='zh'> 請啟用 JavaScript </h1>
+        <p lang='en'> If you are using the "HTML Viewer" on Android, please use <a href='https://play.google.com/store/apps/details?id=com.android.chrome'>Chrome</a> or <a href='https://play.google.com/store/apps/details?id=org.mozilla.firefox'>Firefox</a> instead. </p>
+        <p lang='zh'> 如果你在使用安卓的 "HTML 檢視器"，請試改用 <a href='https://play.google.com/store/apps/details?id=com.android.chrome'>Chrome</a> 或 <a href='https://play.google.com/store/apps/details?id=org.mozilla.firefox'>火狐</a>。 </p>
+        <div id="js_enable_pointer" style="">☟</div><!-- Points to 'Allow' button on IE. Rough position, not accurate, but enough. -->
+    </noscript>
+    <section id='action_list'>
+        <style scoped>
+            #act_list_pnl_term {
+                margin-top: 50px
+            }
+
+            #act_list_txt_search {
+                width: 100%
+            }
+
+            #act_list_tbl_search {
+                width: calc(100% - 20px);
+                border-spacing: 0
+            }
+
+            #act_list_tbl_search button {
+                border-radius: 0;
+                font-weight: bold
+            }
+
+            #act_list_tbl_search td button {
+                margin: 0;
+                overflow: hidden;
+                white-space: nowrap;
+                width: 50%
+            }
+
+            #act_list_tbl_search td+td {
+                width: 30px
+            }
+
+            #act_list_pnl_category {
+                clear: left
+            }
+
+            #act_list_pnl_category button {
+                border: 1px outset #888;
+                display: block;
+                float: left;
+                font-size: 125%;
+                height: 39px;
+                line-height: 33px;
+                max-width: 360px;
+                overflow: hidden;
+                padding: 2px 5px;
+                width: 100%
+            }
+
+            #act_list_pnl_category button * {
+                float: left;
+                margin-right: 5px;
+                white-space: nowrap
+            }
+
+            #act_list_pnl_category button var {
+                float: right;
+                font-weight: normal;
+                font-size: 10pt
+            }
+
+            #act_list_lbl_caption {
+                clear: both;
+                padding: 5px 0
+            }
+
+            #act_list_lbl_showing {
+                padding: 0 7px
+            }
+
+            #action_list input.txt_filter {
+                color: red;
+                flex-grow: 1;
+                font-weight: bold
+            }
+
+            #action_list input.txt_filter::-webkit-input-placeholder,
+            #action_list input.txt_filter::placeholder,
+            #action_list input.txt_filter::-moz-placeholder,
+            #action_list input.txt_filter::-ms-input-placeholder {
+                color: black;
+                font-weight: bold;
+                opacity: .75
+            }
+
+            #act_list_pnl_list {
+                clear: left;
+                font-size: 120%
+            }
+
+            #act_list_pnl_list th {
+                white-space: nowrap
+            }
+
+            #act_list_pnl_list th .button {
+                padding: 0 5px
+            }
+
+            #act_list_pnl_list td {
+                padding: 0 5px
+            }
+
+            #act_list_pnl_list tbody tr[data-id]:hover {
+                background: #B7E9F7;
+                cursor: pointer;
+                color: red
+            }
+
+            @media(min-width:1024px) {
+                #act_list_pnl_category button {
+                    max-width: 220px
+                }
+
+                #act_list_pnl_list th {
+                    position: relative
+                }
+
+                #action_list input.txt_filter {
+                    width: 100%;
+                    width: calc(100% - 27px)
+                }
+
+                #act_list_pnl_list th .button {
+                    position: absolute;
+                    right: 0
+                }
+            }
+
+            @media(max-width:1023px) {
+                #act_list_pnl_category button {
+                    font-size: 100%;
+                    width: 25%
+                }
+
+                #act_list_table {
+                    display: block;
+                    width: 100% !important
+                }
+
+                #act_list_table>thead,
+                #act_list_table>tbody {
+                    display: block;
+                    width: 100%
+                }
+
+                #act_list_table>thead>tr {
+                    display: flex;
+                    flex-flow: row wrap
+                }
+
+                #act_list_table>thead th {
+                    display: flex
+                }
+
+                #act_list_table>thead th:not(:last-child) {
+                    width: 45%
+                }
+
+                #act_list_table>thead th>input[type=search] {
+                    width: 45%
+                }
+
+                #act_list_table>tbody>tr {
+                    display: flex;
+                    flex-flow: column nowrap;
+                    margin-top: 10px;
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                    width: 100%
+                }
+
+                #act_list_table>tbody td {
+                    display: block;
+                    font-weight: bold
+                }
+
+                #act_list_table>tbody td:first-child {
+                    font-size: larger
+                }
+
+                #act_list_table>tbody td:not(:first-child)::before {
+                    display: inline-block;
+                    font-weight: normal;
+                    min-width: 6em;
+                    padding-right: 1ex;
+                    text-align: right
+                }
+            }
+
+            @media(min-width:1270px) {
+                #act_list_pnl_category button {
+                    max-width: 250px
+                }
+            }
+
+            @media(max-width:1269px) {
+                .rpg {
+                    display: none
+                }
+            }
+
+            @media(min-width:767px) {
+                #act_list_pnl_term {
+                    float: left;
+                    margin-right: -320px;
+                    margin-top: 10px;
+                    padding-right: 320px;
+                    width: calc(100% - 10px)
+                }
+
+                #act_list_txt_search {
+                    font-size: 120%;
+                    width: 100%
+                }
+
+                #act_list_tbl_search {
+                    float: right;
+                    margin-left: 0;
+                    width: 300px
+                }
+
+                #act_list_tbl_search td button {
+                    width: 50%
+                }
+            }
+
+            @media(max-width:768px) {
+                #act_list_pnl_category button {
+                    font-size: 100%;
+                    width: 33.3%
+                }
+            }
+        </style>
+        <style id="style_dynamic"></style>
+        <nav>
+            <button id="act_list_btn_prev" class="btn_prev" onclick="od.action.list.btn_flip_page(-1)">&lt;</button>
+            <button id="act_list_btn_next" class="btn_next" onclick="od.action.list.btn_flip_page(1)">&gt;</button>
+        </nav>
+        <menu type='context' id='menu_list'>
+            <menuitem class='i18n menu_view_highlight' label='gui.menu_view_highlight' onclick='od.gui.toggle_highlight()' type='checkbox' checked='checked'>
+            </menuitem>
+            <menuitem class='i18n' label='action.list.menu_filter_column' onclick='od.action.list.filter_column()' id='act_list_menu_filter'>
+            </menuitem>
+            <menuitem class='i18n' label='action.list.menu_filter_column_only' onclick='od.action.list.filter_column_only()' id='act_list_menu_filter_only'>
+            </menuitem>
+        </menu>
+        <div id="act_list_pnl_term" role="search">
+            <input type='search' id='act_list_txt_search' onclick="od.gui.detect_soft_keyboard()" onkeydown="od.action.list.txt_search_down(event)" accesskey='s' autocomplete />
+        </div>
+        <table id="act_list_tbl_search" summary="">
+            <tr>
+                <td><button id='act_list_btn_search_name' class="button pressable i18n" onclick="od.action.list.search('name');" accesskey='n'> action.list.btn_search_name </button><button id='act_list_btn_search_full' class="button pressable i18n" onclick="od.action.list.search('full');" accesskey='f'> action.list.btn_search_body </button></td>
+        </table>
+        <div id='act_list_pnl_category' role="tablist"></div>
+        <div id="act_list_lbl_caption">
+            <span id='act_list_lbl_showing'></span>
+            <span id='act_list_lbl_page'></span>
+            <div id='act_list_pnl_list' contextmenu="menu_list" oncontextmenu="od.action.list.contextmenu(event);"></div>
+        </div>
+        <header role="banner">
+            <button class='i18n' onclick='od.gui.go("about")'> action.about.link_text </button>
+            <h1 id='act_list_h_title' class='i18n'>action.list.title</h1>
+            <button class='i18n top' onclick='window.scroll(0,0)'> gui.top </button>
+        </header>
+    </section>
+    <script>
+        "use strict";
+        (function() {
+            od.action.list = {
+                url: /^list\b/,
+                last_url: null,
+                last_cat: null,
+                last_contextmenu: null,
+                last_scrollY: 0,
+                last_downX: 0,
+                last_downY: 0,
+                last_downTime: 0,
+                initialize: function() {
+                    od.action.list.search(od.action.list.search_type), _.hide("#act_list_lbl_page, #act_list_btn_prev, #act_list_btn_next")
+                },
+                l10n: function() {
+                    var t = od.action.list,
+                        n = od.data;
+                    _.attr("#act_list_txt_search", "placeholder", _.l("action.list.txt_search_" + t.search_type + "_placeholder"));
+                    for (var r in t.category_dom) _.attr(_(t.category_dom[r], "b"), "text", r ? n.get(r).getTitle() : _.l("action.list.a_all"));
+                    if (t.last_cat) {
+                        var i = t.last_cat.columns,
+                            s = "@media (max-width: 1023px) {";
+                        _.ary(_(".txt_filter")).forEach(function(e, t) {
+                            var n = _.l("data.field." + i[t + 1], i[t + 1]);
+                            e.placeholder = n, t > 0 && (s += "#act_list_table > tbody > tr > td:nth-child(" + (t + 1) + ')::before{ content: "' + n + '"; }')
+                        }), _("#style_dynamic")[0].innerHTML = s + "}"
+                    }
+                },
+                setup: function() {
+                    var t = od.action.list;
+                    if (t.last_url && t.last_url !== location.search) try {
+                        history.replaceState(null, null, t.last_url)
+                    } catch (n) {}
+                    _("#act_list_pnl_category button").length <= 0 ? this.build_category(od.action.list.parse_action_id) : od.data.load_catalog(od.action.list.parse_action_id), setTimeout(function() {
+                        window.scrollTo(0, t.last_scrollY)
+                    }, 0)
+                },
+                cleanup: function() {
+                    od.action.list.last_scrollY = window.pageYOffset
+                },
+                search_type: "name",
+                category: undefined,
+                category_dom: {},
+                sort_field: undefined,
+                sort_asc: !0,
+                total_count: 0,
+                columns: [],
+                data: [],
+                txt_search_down: function(t) {
+                    t.keyCode === 13 && !t.altKey && !t.ctrlKey && !t.metaKey && (this.get_search_category() === undefined && this.set_search_category(""), this.search(), od.gui.is_soft_keyboard && document.documentElement.focus())
+                },
+                txt_filter_input: function t(e) {
+                    t.timer && clearTimeout(t.timer), t.timer = setTimeout(function() {
+                        _.time(), od.action.list.show_list()
+                    }, 300)
+                },
+                a_category: function(t) {
+                    var n = od.action.list;
+                    od.gui.page = 0, n.set_search_category(t ? od.data.get(t) : ""), n.search(), n.focus_searchbox()
+                },
+                btn_flip_page: function(t) {
+                    var n = od.action.list,
+                        r = od.gui;
+                    _.time(), r.page += t, n.show_list(), _("#act_list_lbl_page")[0].scrollIntoView()
+                },
+                table_click: function(t) {
+                    var n = od.action.list;
+                    if (t.pageX && (t.button || Math.abs(n.last_downX - t.pageX) > 10 || Math.abs(n.last_downY - t.pageY) > 10 || (new Date).getTime() - n.last_downTime > 1e3)) return;
+                    var r = _.parent(t.target, "#act_list_pnl_list tr");
+                    if (!r) return;
+                    var i = r.getAttribute("data-id");
+                    if (!i) return;
+                    _.noDef(t), t.ctrlKey ? window.open("?view=" + encodeURIComponent(i)) : od.gui.go("view=" + encodeURIComponent(i))
+                },
+                table_mousedown: function(t) {
+                    var n = od.action.list;
+                    n.last_downX = t.pageX, n.last_downY = t.pageY, n.last_downTime = (new Date).getTime()
+                },
+                set_search_category: function(t) {
+                    od.action.list.category = t, _.attr("#act_list_pnl_category .pressable", "aria-pressed", "false"), t !== undefined && _.attr(od.action.list.category_dom[t ? t.name : ""], "aria-pressed", "true")
+                },
+                focus_searchbox: function() {
+                    var t = od.gui;
+                    if (t.is_soft_keyboard) return;
+                    _("#act_list_txt_search")[0].focus(), t.detect_soft_keyboard()
+                },
+                contextmenu: function(t) {
+                    var n = od.action.list.last_contextmenu = t.target.closest("td");
+                    if (!n || !n.previousSibling || !n.nextSibling) return _.prop("#act_list_menu_filter, #act_list_menu_filter_only", {
+                        label: ""
+                    });
+                    _("#act_list_menu_filter")[0].label = _.l("action.list.menu_filter_column", "Filter %1", n.textContent || "NIL"), _("#act_list_menu_filter_only")[0].label = _.l("action.list.menu_filter_column_only", "Filter only %1", n.textContent || "NIL")
+                },
+                clear_search: function() {
+                    _("#act_list_txt_search")[0].value = "", od.action.list.show_list()
+                },
+                clear_filter: function() {
+                    _.prop(".txt_filter", {
+                        value: ""
+                    }), od.action.list.show_list()
+                },
+                filter_column: function() {
+                    var t = od.action.list,
+                        n = t.last_contextmenu;
+                    if (n) {
+                        var r = [].indexOf.call(n.parentNode.children, n);
+                        _(".txt_filter")[r].value = n.textContent || "NIL"
+                    }
+                    od.action.list.show_list()
+                },
+                filter_column_only: function() {
+                    _.prop(".txt_filter", {
+                        value: ""
+                    }), od.action.list.filter_column()
+                },
+                get_search_category: function() {
+                    return od.action.list.category
+                },
+                get_search_term: function() {
+                    return _("#act_list_txt_search")[0].value
+                },
+                get_filters: function(t) {
+                    return _.ary(_(t, ".txt_filter")).map(function(e) {
+                        return e.value
+                    }).filter(function(e) {
+                        return e.trim().length
+                    })
+                },
+                update_action_id: function() {
+                    var t = od.action.list,
+                        n = t.get_search_term(),
+                        r = "list." + t.search_type;
+                    t.category ? r += "." + encodeURIComponent(t.category.name) : t.category !== undefined && (r += ".All"), n && (r += "=" + encodeURIComponent(n)), t.sort_field && (r += "&sort=" + encodeURIComponent(t.sort_field), t.sort_asc || (r += "&reverse=1")), t.last_url = "?" + r, od.gui.pushState(r)
+                },
+                parse_action_id: function() {
+                    try {
+                        var t = od.gui.act_id,
+                            n = od.action.list;
+                        if (n.last_url === location.search) return;
+                        var r = t.match(/^list(?:\.(name|full)?\.([^=&]+)?)?(=[^&]+)?(?:&sort=([^&]+)(&reverse=1)?)?(.*)$/);
+                        r && (r[2] ? n.set_search_category(r[2] === "All" ? "" : od.data.get(r[2])) : n.set_search_category(undefined), _("#act_list_txt_search")[0].value = r[3] ? decodeURIComponent(r[3].substr(1)) : "", n.sort_field = r[4] ? r[4] : undefined, n.sort_asc = !r[5], n.search(r[1]))
+                    } catch (i) {
+                        od.gui.go("list")
+                    }
+                },
+                search: function(t) {
+                    var n = od.action.list;
+                    t !== undefined && (_.attr("#act_list_tbl_search button", "aria-pressed", "false"), _.attr("#act_list_btn_search_" + t, "aria-pressed", "true"), n.search_type = t, n.l10n()), od.gui.page = 0;
+                    var r = n.get_search_category();
+                    r !== undefined && (n.update_action_id(), n.get_search_term() === "" ? od.search.list_category(n.get_search_category(), n.build_list) : (t === undefined && (t = n.search_type), od.search.search({
+                        category: r,
+                        term: n.get_search_term(),
+                        type: t,
+                        ondone: n.build_list
+                    }))), n.focus_searchbox()
+                },
+                update_counts: function(t) {
+                    var n = 0,
+                        r = od.action.list.category_dom;
+                    od.data.get().forEach(function(i) {
+                        var s = i.count;
+                        n += s;
+                        if (t) {
+                            var o = t[i.name];
+                            s = ~~o ? _.l("action.list.lbl_count", "%1", o === undefined ? "--" : ~~o, i.count) : ""
+                        }
+                        _.attr(_(r[i.name], "var"), "text", s)
+                    });
+                    var i = n;
+                    if (t) {
+                        var s = t[""];
+                        i = ~~s ? _.l("action.list.lbl_count", "%1", s === undefined ? "--" : ~~s, n) : ""
+                    }
+                    _.attr(_(r[""], "var"), "text", i)
+                },
+                build_category: function(t) {
+                    function r(e, t, r) {
+                        var i, s, o;
+                        t ? (s = t.name, o = t.count) : (s = "", o = 0);
+                        var u = _.create("button", {
+                            "class": "pressable",
+                            "aria-pressed": "false",
+                            style: "background-color:" + r,
+                            role: "tab",
+                            onclick: function() {
+                                n.a_category(s)
+                            }
+                        });
+                        u.appendChild(_.create("span", {
+                            "class": "rpg " + s
+                        })), u.appendChild(_.create("b", s)), u.appendChild(_.create("var", o)), e.appendChild(u), n.category_dom[s] = u
+                    }
+                    var n = od.action.list;
+                    n.category = undefined, n.category_dom = {}, od.data.load_catalog(function() {
+                        var i = _("#act_list_pnl_category")[0];
+                        i.innerHTML = "";
+                        var s = od.data.get(),
+                            o = "";
+                        od.config.category_order.forEach(function(t) {
+                            if (t.charAt(0) === "#") o = t.substr(1);
+                            else if (t === "{All}") r(i, null, o);
+                            else {
+                                var n = od.data.get(t);
+                                n && (r(i, n, o), s.splice(s.indexOf(n), 1))
+                            }
+                        }), n.l10n();
+                        for (var u = 0, a = s.length; u < a; u++) r(i, s[u], o);
+                        n.update_counts(), _.show(i), t && _.call(t)
+                    }, function() {
+                        od.gui.go("about"), _.show(".nodata")
+                    })
+                },
+                build_list: function(t, n, r, i) {
+                    _.time("[List] Building header for " + JSON.stringify(t));
+                    var s = od.action.list,
+                        o = t.length;
+                    s.columns = t, s.data = n, od.gui.set_highlight(i), s.update_counts(r);
+                    var u = _.ary(_(".txt_filter")).map(function(e) {
+                        return e.value
+                    });
+                    _.remove("#act_list_table");
+                    var a = _.create("table", {
+                            id: "act_list_table",
+                            "aria-label": _.l("action.list.search_result", "Result")
+                        }),
+                        f = _.create("tr"),
+                        l = _.create("thead"),
+                        c = "@media (max-width: 1023px) {";
+                    a.appendChild(l), l.appendChild(f);
+                    for (var h = 1; h < o; h++) {
+                        var p = _.create("th"),
+                            d = _.l("data.field." + t[h], t[h]);
+                        p.appendChild(_.create("input", {
+                            type: "search",
+                            "class": "txt_filter",
+                            placeholder: d,
+                            list: "list" + h,
+                            size: 6,
+                            oninput: s.txt_filter_input
+                        }));
+                        var v = _.create("span", {
+                            text: "⇅",
+                            "class": "button",
+                            onclick: function(e) {
+                                return function(n) {
+                                    _.time(), s.sort_asc = s.sort_field === e ? !s.sort_asc : !0, _.attr("#act_list_pnl_list th span", "text", "⇅"), n.target.textContent = s.sort_asc ? "↓" : "↑", od.gui.page = 0, s.sort_field = e, s.show_list(), s.update_action_id()
+                                }
+                            }(t[h])
+                        });
+                        p.appendChild(v), f.appendChild(p), h > 1 && (c += "#act_list_table > tbody > tr > td:nth-child(" + h + ')::before{ content: "' + d + '"; }')
+                    }
+                    var p = _.create("th");
+                    p.appendChild(_.create("input", {
+                        type: "button",
+                        value: _.l("action.list.btn_clear_filter", "×"),
+                        onclick: function() {
+                            _.ary(_(".txt_filter")).forEach(function(e) {
+                                e.value = ""
+                            }), s.search()
+                        }
+                    })), f.appendChild(p), _("#style_dynamic")[0].innerHTML = c + "}", s.get_search_category() === s.last_cat && _.ary(_(f, ".txt_filter")).forEach(function(e, t) {
+                        u.length > t && (e.value = u[t])
+                    }), s.last_cat = s.get_search_category(), s.show_list(a), a.addEventListener("click", s.table_click), a.addEventListener("mousedown", s.table_mousedown), a.addEventListener("input", s.table_click), _.show("#act_list_pnl_list")[0].appendChild(a)
+                },
+                build_datalist: function(t) {
+                    if (!t) return;
+                    var n = this.columns,
+                        r = n.length,
+                        i = 0;
+                    if (navigator.userAgent.match(/Trident\//)) return _.warn("[List] Datalist skipped on IE because it may crash");
+                    _.time("[List] Building " + r + " datalist");
+                    for (var s = 1; s < r; s++) {
+                        _.remove("#list" + s);
+                        var o, u = _.map(),
+                            a = n[s];
+                        od.config.is_mc_column(a) ? o = function(e) {
+                            e.split(/\s*(?:,? or | and |[,;])\s*/g).forEach(function(e) {
+                                u[e] = !0
+                            })
+                        } : od.config.is_num_column(a) ? o = function(e) {
+                            e instanceof Object ? e.set.forEach(function(e) {
+                                u[e] = !0
+                            }) : typeof e == "string" ? u[e.replace(/,| gp$/g, "")] = !0 : u[e] = !0
+                        } : o = function(e) {
+                            u[e] = !0
+                        };
+                        for (var f = 0, l = t.length; f < l; f++) o(t[f][a]);
+                        u[""] && delete u[""], u = Object.keys(u), i += u.length;
+                        switch (a) {
+                            case "Cost":
+                            case "Tier":
+                            case "Level":
+                            case "Price":
+                                u.sort(_.sorter(od.config.level_to_int));
+                                break;
+                            default:
+                                u.sort(_.sorter(function(e) {
+                                    return e.trim().toLowerCase()
+                                }))
+                        }
+                        var c = '<datalist id="list' + s + '">' + u.map(function(e) {
+                            return '<option value="' + _.escHtml(e) + '">'
+                        }).join("") + "</datalist>";
+                        document.body.insertAdjacentHTML("beforeend", c)
+                    }
+                    _.time("[List] Built " + r + " datalist, total " + i + " items.")
+                },
+                filter_data: function(t, n, r) {
+                    var i = r.length;
+                    return _.ary(_(t, ".txt_filter")).forEach(function(t, i) {
+                        var s = od.search.filter_column(t.value, n[i + 1]);
+                        s && r.length && (r = r.filter(s))
+                    }), i === r.length ? _.attr("#act_list_lbl_showing", "text", _.l("action.list.lbl_showing", "%1", i)) : (_.attr("#act_list_lbl_showing", "text", _.l("action.list.lbl_filter", "%1/%2", r.length, i)), _.time("[List] Filtered " + i + " rows")), this.build_datalist(r), r
+                },
+                show_list: function(t) {
+                    _.time();
+                    var n = this,
+                        r = od.gui,
+                        i = n.data,
+                        s = n.columns,
+                        o = n.get_search_category(),
+                        u = s.length,
+                        a = s[0];
+                    t || (t = _("#act_list_pnl_list table")[0]), _.remove(t, "tbody"), _.time("[List] Cleared previous list.");
+                    var f = _.create("tbody");
+                    i = n.filter_data(t, s, i);
+                    var l = l = i.length;
+                    if (!l) {
+                        r.total_page = r.page = 0, b = "<tr><td rowspan=99 align=center>", b += _.l("action.list.lbl_no_result", "No result. ");
+                        var c = [];
+                        n.search_type === "name" && c.push(_.l("action.list.switch_to_full_text", "<a onclick='od.action.list.search(\"full\");'>Full search</a>")), o && c.push(_.l("action.list.switch_to_all", "<a onclick='od.action.list.a_category();'>Search All</a>")), n.get_search_term() && c.push(_.l("action.list.clear_search", "<a onclick='od.action.list.clear_search();'>Clear search</a>")), n.get_filters(t).length > 0 && c.push(_.l("action.list.clear_filter", "<a onclick='od.action.list.clear_filter();'>Clear filter</a>"));
+                        var h = _.l("gui.,", ", "),
+                            p = _.l("gui.or", " or "),
+                            d = _.l("gui.?", "?");
+                        switch (c.length) {
+                            case 0:
+                                break;
+                            case 1:
+                                b += c[0] + d;
+                                break;
+                            default:
+                                b += c.slice(0, -1).join(h) + p + c[c.length - 1] + d
+                        }
+                        od.action.view.siblings = []
+                    } else {
+                        n.sort_field && i[0][n.sort_field] !== undefined && (od.search.sort_data(i, n.sort_field, n.sort_asc ? "asc" : "desc"), _.time("[List] Sorted " + i.length + " rows"));
+                        var v = (new Array(u)).fill(r.hlp);
+                        _.ary(_(t, ".txt_filter")).forEach(function(t, r) {
+                            if (!t.value.trim()) return;
+                            var i = od.search.gen_search(t.value + " " + n.get_search_term());
+                            if (!i || !i.highlight) return;
+                            v[r + 1] = new RegExp("((?:" + i.highlight.join(")|(?:") + "))", "ig")
+                        }), r.total_page = Math.ceil(l / r.row_per_page), r.page = Math.min(Math.max(0, r.page), r.total_page - 1);
+                        var m = r.page * r.row_per_page,
+                            g = Math.min(l, m + r.row_per_page),
+                            y = document,
+                            b = "";
+                        _.time("[List] Listing results " + m + " to " + g + " (" + s + ")");
+                        for (var w = m; w < g; w++) {
+                            var E = i[w];
+                            if (!E) continue;
+                            var S = E._category.name,
+                                x = E[a];
+                            b += '<tr data-id="' + _.escHtml(x) + '"><td><a href="?view=' + x + '">', b += r.highlight(E.Name, v[1]) + "</a>";
+                            for (var T = 2; T < u; T++) {
+                                var N = E[s[T]] || "";
+                                b += "<td>" + r.highlight(N.text ? N.text : N, v[T])
+                            }
+                        }
+                        od.action.view.siblings = i.map(function(e) {
+                            return e.ID
+                        })
+                    }
+                    n.update_paging(), f.insertAdjacentHTML("beforeend", b), t.appendChild(f), l ? _.time("[List] Listed " + (g - m) + " / " + l + " results.") : _.time("[List] No data. Proposed " + c.length + " quick actions.")
+                },
+                update_paging: function() {
+                    var t = od.action.list,
+                        n = od.gui,
+                        r = t.data.length,
+                        i = t.category ? t.category.getTitle() : _.l("action.list.a_all"),
+                        s = _.l("action.list.lbl_page", "%1 %2/%3", i, n.total_page ? n.page + 1 : 0, n.total_page);
+                    _("#act_list_h_title")[0].textContent = s, od.gui.update_title(s), r <= n.row_per_page ? _.hide("#act_list_lbl_page, #act_list_btn_prev, #act_list_btn_next") : (_.visible("#act_list_btn_prev", n.page > 0), _.visible("#act_list_btn_next", n.page < n.total_page - 1), _("#act_list_lbl_page")[0].textContent = s, _.show("#act_list_lbl_page"))
+                }
+            }
+        })()
+    </script>
+    <section id='action_view'>
+        <style scoped>
+            #act_view_pnl_link {
+                background-color: rgba(255, 224, 128, 0.9);
+                border: 1px solid black;
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+                display: none;
+                position: absolute
+            }
+
+            #act_view_pnl_link td {
+                padding: 0 1ex;
+                color: #666
+            }
+
+            #act_view_pnl_link td:first-child {
+                text-align: right
+            }
+        </style>
+        <nav>
+            <button id="act_view_btn_prev" class="btn_prev" onclick="od.action.view.btn_prev_click()">&lt;</button>
+            <button id="act_view_btn_next" class="btn_next" onclick="od.action.view.btn_next_click()">&gt;</button>
+        </nav>
+        <menu type='context' id='menu_view'>
+            <menuitem class='i18n menu_view_highlight' label='gui.menu_view_highlight' onclick='od.gui.toggle_highlight()' type='checkbox' checked='checked'>
+            </menuitem>
+            <menuitem class='i18n' label='action.view.menu_quick_lookup' onclick='od.action.view.context_links()' id="act_view_menu_lookup">
+            </menuitem>
+            <menuitem class='i18n' label='action.view.menu_name_search' onclick='od.action.view.menu_name_search_click()' id="act_view_menu_name_search">
+            </menuitem>
+            <menuitem class='i18n' label='action.view.menu_full_search' onclick='od.action.view.menu_full_search_click()' id="act_view_menu_full_search">
+            </menuitem>
+        </menu>
+        <article id="act_view_pnl_content" contextmenu="menu_view" onclick="od.action.view.pnl_content_click(event)" oncontextmenu="od.action.view.contextmenu(event);"></article>
+        <nav id="act_view_pnl_link" onclick="od.action.view.pnl_link_click(event)">
+            <table>
+                <tbody></tbody>
+            </table>
+        </nav>
+        <header role="banner">
+            <button class='i18n' onclick='od.action.view.btn_browse_click(event)' accesskey='1'> action.list.link_text </button>
+            <h1 id="act_view_h_title"></h1>
+            <button class='i18n top' onclick='scrollTo(0,0)'> gui.top </button>
+        </header>
+    </section>
+    <script>
+        "use strict";
+        (function() {
+            od.action.view = {
+                last_popup_event: null,
+                last_popup_range: null,
+                lookup_radius: 20,
+                initialize: function() {
+                    function t() {
+                        _.hide("#act_view_pnl_link")
+                    }
+                    document.body.addEventListener("click", t), window.addEventListener("unload", t)
+                },
+                l10n: function() {},
+                setup: function() {
+                    this.parse_action_id()
+                },
+                cleanup: function() {
+                    this.clear()
+                },
+                update_action_id: function() {
+                    var t = od.action.view;
+                    t.act_id instanceof Array ? od.gui.pushState("view=" + t.act_id.join(",")) : od.gui.pushState("view=" + t.act_id)
+                },
+                parse_action_id: function() {
+                    var t = od.gui.act_id,
+                        n = od.action.view,
+                        r = t.substr("view=".length).split(",").map(function(e) {
+                            return decodeURIComponent(e)
+                        }),
+                        i = r.length;
+                    n.clear(), r.forEach(function(t) {
+                        _.info("[View] Parsing " + t);
+                        var s = od.data.create(od.data.category_name_of(t));
+                        _.info("[View] Display " + s.name + "." + t);
+                        var o = _.html("<div><h1>" + _.l("gui.loading", "Loading") + "</h1></div>");
+                        _("#act_view_pnl_content")[0].appendChild(o), s.load_data(t, function() {
+                            --i === 0 && n.show_entries(o, s, r)
+                        })
+                    }), n.act_id = r && r.length > 0 ? r.length === 1 ? r[0] : r : null, n.l10n(), n.update_nav_button()
+                },
+                btn_browse_click: function() {
+                    if (od.action.list.category === undefined) {
+                        var t = od.action.view.act_id;
+                        return t instanceof Array && (t = t[0]), od.gui.go("list.name." + od.data.category_name_of(t))
+                    }
+                    od.gui.go("list")
+                },
+                btn_prev_click: function() {
+                    var t = od.action.view,
+                        n = t.siblings.indexOf(t.act_id);
+                    if (n <= 0) return _.hide("#act_view_btn_prev");
+                    t.act_id = encodeURIComponent(t.siblings[n - 1]), t.update_action_id(), t.parse_action_id()
+                },
+                btn_next_click: function() {
+                    var t = od.action.view,
+                        n = t.siblings.indexOf(t.act_id);
+                    if (n >= t.siblings.length - 1) return _.hide("#act_view_btn_next");
+                    t.act_id = encodeURIComponent(t.siblings[n + 1]), t.update_action_id(), t.parse_action_id()
+                },
+                pnl_content_click: function(t) {
+                    if (t.button && t.button !== 2) return;
+                    if (t.target.tagName === "A") return;
+                    var n = od.action.view;
+                    _.time(), n.popup_links(t)
+                },
+                pnl_link_click: function(t) {
+                    _.noDef(t);
+                    var n = _.parent(t.target, "#act_view_pnl_link tr");
+                    n && od.gui.go(_(n, "a")[0].getAttribute("href").substr(1))
+                },
+                contextmenu: function(t) {
+                    var n = od.action.view,
+                        r = window.getSelection ? getSelection() : null,
+                        i, s;
+                    n.last_popup_event = t, n.last_popup_range = null;
+                    if (r && r.rangeCount && !r.isCollapsed) i = r.toString().trim(), n.last_popup_range = {
+                        pre: i,
+                        post: ""
+                    };
+                    else {
+                        if (document.caretRangeFromPoint) s = n.last_popup_range = document.caretRangeFromPoint(t.clientX, t.clientY);
+                        else if (document.caretPositionFromPoint) {
+                            var o = document.caretPositionFromPoint(t.clientX, t.clientY);
+                            o && (s = n.last_popup_range = document.createRange(), s.setStart(o.offsetNode, o.offset))
+                        }
+                        i = n.find_selection_term(s, 20), i = i.pre.replace(/.*\s\b/, "") + i.post.replace(/\b\s.*/, "")
+                    }
+                    _.attr("#act_view_menu_lookup", {
+                        label: _.l("action.view.menu_quick_lookup", "Lookup %1", i)
+                    }), _.attr("#act_view_menu_name_search", {
+                        label: _.l("action.view.menu_name_search", "Name search %1", i)
+                    }), _.attr("#act_view_menu_full_search", {
+                        label: _.l("action.view.menu_full_search", 'Full search "%1"', i)
+                    }), _.visible("#act_view_menu_lookup, #act_view_menu_name_search, #act_viewmenu_full_search", i)
+                },
+                context_links: function() {
+                    var t = od.action.view;
+                    t.popup_links(t.last_popup_event, t.last_popup_range)
+                },
+                menu_name_search_click: function() {
+                    var t = od.action.view,
+                        n = t.last_popup_range.pre;
+                    n || (n = t.find_selection_term(t.last_popup_range, 20), n = n.pre.replace(/.*\s\b/, "") + n.post.replace(/\b\s.*/, "")), _.log("[View] Name search " + n), od.gui.go("list.name.all=" + encodeURIComponent(n))
+                },
+                menu_full_search_click: function() {
+                    var t = od.action.view,
+                        n = t.last_popup_range.pre;
+                    n || (n = t.find_selection_term(t.last_popup_range, 20), n = n.pre.replace(/.*\s\b/, "") + n.post.replace(/\b\s.*/, "")), _.log("[View] Full search " + n), od.gui.go('list.full.all="' + encodeURIComponent(n) + '"')
+                },
+                act_id: null,
+                siblings: [],
+                clear: function() {
+                    _("#act_view_pnl_content")[0].innerHTML = ""
+                },
+                set_title: function(t) {
+                    _("#act_view_h_title")[0].textContent = t, od.gui.update_title(t)
+                },
+                show_entries: function(t, n, r) {
+                    var i = od.action.view,
+                        s = r.map(function(t) {
+                            var r = '<div class="detail" id="' + t + '">' + n.data[t] + "</div>";
+                            return r.replace(/(<p class=publishedIn>.*)<\/p>/, "$1<a class='cat' href='?list.name." + n.name + "'>" + n.getTitle() + "</a></p>")
+                        }).join("");
+                    t.innerHTML = od.gui.highlight(s);
+                    var o = s ? s.match(/<h1[^>]*>(.+?)<\/h1\s*>/) : null;
+                    i.set_title(o ? o[1].replace(/<(\w+)[^>]*>.*<\/\1>|<br\/?>|\[Attack Technique\]/g, "").trim() : r.join(", "))
+                },
+                update_nav_button: function() {
+                    var t = od.action.view;
+                    _.hide("#act_view_btn_prev, #act_view_btn_next");
+                    if (!t.siblings || t.siblings.length <= 1 || !t.act_id || t.act_id instanceof Array) return;
+                    var n = t.siblings.indexOf(t.act_id);
+                    if (n < 0) return;
+                    n > 0 && _.show("#act_view_btn_prev"), n < t.siblings.length - 1 && _.show("#act_view_btn_next")
+                },
+                popup_links: function(t, n) {
+                    var r = od.action.view,
+                        i = od.data,
+                        s = _("#act_view_pnl_link")[0];
+                    _.hide(s), n || (n = getSelection().getRangeAt(0));
+                    if (n.getBoundingClientRect) {
+                        var o = n.getBoundingClientRect(),
+                            u = (o.left + o.right) / 2,
+                            a = (o.top + o.bottom) / 2;
+                        if (Math.abs(t.clientX - u) > r.lookup_radius || Math.abs(t.clientY - a) > r.lookup_radius) return
+                    }
+                    i.load_name_index(function() {
+                        var o = r.find_internal_links(t, n);
+                        if (!o.length) return;
+                        var u = {},
+                            a = 0;
+                        for (var f in o) {
+                            var l = i.category_name_of(o[f]);
+                            if (u[l]) continue;
+                            var c = u[l] = i.get(l);
+                            ++a, c.load_listing(function() {
+                                if (--a !== 0) return;
+                                _.info("[View] Showing popup for " + o), _("#act_view_pnl_link tbody")[0].innerHTML = o.map(function(e) {
+                                    var t = i.get(i.category_name_of(e)),
+                                        n = t.map[e];
+                                    return "<tr><td>" + t.getTitle() + '<td><a href="?view=' + e + '">' + n.Name + "</a>" + "<td>" + n._TypeName
+                                }).join(""), _.style(s, {
+                                    top: 0,
+                                    left: 0,
+                                    display: "block"
+                                });
+                                var n = s.getBoundingClientRect(),
+                                    r = document.body,
+                                    u = window.pageXOffset,
+                                    f = window.pageYOffset,
+                                    l = r.clientWidth,
+                                    c = r.clientHeight,
+                                    h = n.width / (t.button ? 1 : 2),
+                                    p = Math.max(u, t.clientX + u - h),
+                                    d = t.clientY + f;
+                                p + n.width + 20 > l && (p = Math.max(u, l - n.width - 20)), d + n.height + 20 > c && (d = Math.max(f, c - n.height - 20)), _.hide(s), setTimeout(function() {
+                                    _.style(s, {
+                                        top: d + "px",
+                                        left: p + "px",
+                                        display: "block"
+                                    })
+                                }, 0), _.time("[View] Shown popup.")
+                            })
+                        }
+                    })
+                },
+                find_selection_term: function(t, n) {
+                    function s(e, t, n) {
+                        var r = e.textContent,
+                            o = "",
+                            u = e.previousSibling;
+                        if (r.length) {
+                            n === undefined && (n = r.length), o = r.substring(n - Math.min(n, t), n), t -= o.length;
+                            if (t <= 0) return o
+                        }
+                        if (u && i.indexOf(e.tagName) >= 0 && i.indexOf(u.tagName) >= 0)
+                            if (u.tagName !== "SPAN" || u.className !== "level") return s(u, t) + o;
+                        return o
+                    }
+
+                    function o(e, t, n) {
+                        var r = e.textContent,
+                            s = "",
+                            u = e.nextSibling;
+                        if (r.length) {
+                            n === undefined && (n = 0), s = r.substring(n, Math.min(r.length, n + t)), t -= s.length;
+                            if (t <= 0) return s
+                        }
+                        if (u && i.indexOf(e.tagName) >= 0 && i.indexOf(u.tagName) >= 0)
+                            if (u.tagName !== "SPAN" || u.className !== "level") return s + o(u, t);
+                        return s
+                    }
+                    if (!t) return {
+                        pre: "",
+                        post: ""
+                    };
+                    if ("pre" in t && "post" in t) return t;
+                    var r = t.commonAncestorContainer,
+                        i = [undefined, "MARK", "SPAN"],
+                        u = s(r, n, t.startOffset).replace(/^\s+/, ""),
+                        a = o(r, n, t.startOffset).replace(/\s+$/, "");
+                    return {
+                        pre: u,
+                        post: a
+                    }
+                },
+                find_internal_links: function(t, n) {
+                    function s(e) {
+                        return e.replace(/[^\w'-éû]+/g, " ").toLowerCase()
+                    }
+                    var r = t.target.closest("div.detail[id]"),
+                        i = [];
+                    if (!r) return [];
+                    var o = this.find_selection_term(n, 46),
+                        u = s(o.pre),
+                        a = s(o.post);
+                    _.time("[Lookup] Lookup: " + u + "^" + a);
+                    var f = u.indexOf(" "),
+                        l = u + a,
+                        c = od.data.index;
+                    for (var h in c) {
+                        f >= 0 && h.length < u.length - f && (u = u.substr(f + 1), l = u + a, f = u.indexOf(" "));
+                        var p = l.indexOf(h),
+                            d = c[h];
+                        p >= 0 && p <= u.length && p + h.length >= u.length && (new RegExp("(^|\\b)" + h + "(?!-)(\\b|$)")).test(l) && (i = i.concat(d))
+                    }
+                    return i = i.filter(function(e, t) {
+                        return e !== r.id && i.slice(t + 1).indexOf(e) < 0
+                    }), _.time("[Lookup] Done lookup. Found " + i.length + " links."), i
+                }
+            }
+        })()
+    </script>
+    <section id='action_about'>
+        <style scoped>
+            #action_about article {
+                padding: 0 1em;
+            }
+
+            #action_about div {
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+
+            #action_about div h1,
+            #action_about article h2 {
+                clear: both;
+            }
+
+            #action_about img {
+                border: 2px ridge lightgrey;
+            }
+
+            #action_about .nodata {
+                font-weight: bold;
+                font-size: 150%;
+            }
+
+            @media (min-width: 1024px) {
+                #action_about img {
+                    width: 400px;
+                }
+
+                #action_about figure.right {
+                    margin-left: 1em;
+                }
+
+                #action_about figure.left {
+                    margin-right: 1em;
+                }
+            }
+
+            @media (max-width: 1023px) {
+
+                #action_about figure.right,
+                #action_about figure.left {
+                    float: none;
+                }
+
+                #action_about img {
+                    max-width: 400px;
+                    width: 100%;
+                }
+            }
+        </style>
+        <div>
+            <p class='nodata i18n' style='display: none'> action.about.p_nodata </p>
+            <article class='left'>
+                <h1 class='i18n'> action.about.h_language </h1>
+                <p>
+                    Language<span class='i18n'> action.about.lbl_select_lang </span>
+                    <select id='action_about_lst_lang' onchange='od.action.about.change_language(this.value)'>
+                        <option value='zh'> Chinese 中文
+                        <option value='en'> English
+                    </select> <br />
+                    <span class='i18n'> action.about.lbl_toggle_highlight </span>
+                    <label>
+                        <input type='radio' name='highlight' id='action_about_rdo_highlight_on' checked onclick='od.gui.toggle_highlight(true)' />
+                        <span class='i18n'> action.about.opt_highlight_on </span>
+                    </label>
+                    <label>
+                        <input type='radio' name='highlight' id='action_about_rdo_highlight_off' onclick='od.gui.toggle_highlight(false)' />
+                        <span class='i18n'> action.about.opt_highlight_off </span>
+                    </label>
+                </p>
+            </article>
+            <article class='right'>
+                <h1 class='i18n'> action.about.h_license </h1>
+                <p class='i18n'> action.about.p_license </p>
+                <p>
+                    <button class='i18n' onclick='od.gui.go("license")'> action.license.link_text </button>
+                    <a class='button i18n' href='https://github.com/Sheep-y/trpg-dnd-4e-db'> action.about.a_github </a>
+                    <a class='button i18n' href='mailto:your.sheepy@gmail.com' accesskey="9"> action.about.a_email </a>
+                </p>
+            </article>
+            <article>
+                <h1 class='i18n'> action.about.h_intro </h1>
+                <p class='i18n'> action.about.p_intro </p>
+            </article>
+            <article>
+                <h1 class='i18n'> action.about.h_search_data </h1>
+                <p class='i18n'> action.about.p_search_data </p>
+            </article>
+            <article>
+                <h1 class='i18n'> action.about.h_move_data </h1>
+                <p class='i18n'> action.about.p_move_data </p>
+            </article>
+            <article>
+                <h1 class='i18n'> action.about.h_history </h1>
+                <p>
+                    <span class="i18n"> action.about.lbl_english_only </span>
+                </p>
+                <section lang="en">
+                    <h2> Original Prototype </h2>
+                    <figure class='right'>
+                        <a href="https://raw.githubusercontent.com/Sheep-y/trpg-dnd-4e-db/res/img/History - 1st alpha.jpg"><img alt='' src='https://raw.githubusercontent.com/Sheep-y/trpg-dnd-4e-db/master/res/img/History%20-%201st%20alpha.jpg' /></a>
+                        <figcaption>Date: <time>2010-11-17</time></figcaption>
+                    </figure>
+                    <p>
+                        It all started with <a href="https://www.youtube.com/watch?v=z-1_3VCEyG0">online Character Builder</a>.
+                        For many years, I was spending 3 hours on public transport each day.
+                        Sometimes I spent them on the original, <a href="https://www.youtube.com/watch?v=2hjzWeDPHfk">offline Character Builder</a>.
+                    </p>
+                    <p>
+                        Until it went online.
+                        Wanting better offline access, the prototype as seen on right was born.
+                        It was a <a href="https://en.wikipedia.org/wiki/Bookmarklet">bookmarket</a> that just grabbed entries from online compendium into a popup, applied <a href='http://www.datatables.net/'>DataTables</a> on top of it, and then you can manually save the popup for offline use.
+                    </p>
+                </section>
+                <section lang="en">
+                    <h2> 1<sup>st</sup> Version </h2>
+                    <figure class='left'>
+                        <a href="https://raw.githubusercontent.com/Sheep-y/trpg-dnd-4e-db/master/res/img/History - 1st gen.jpg"><img alt='' src='https://raw.githubusercontent.com/Sheep-y/trpg-dnd-4e-db/master/res/img/History - 1st gen.jpg' /></a>
+                        <figcaption>Date: <time>2012-03-23</time>; Development stopped 2011 March. </figcaption>
+                    </figure>
+                    <p>
+                        It is nice to have an offline catalog. So I keep working on it.
+                        Inspired by DataTables' search code, I coded a search term parser that works with Google like syntax.
+                    </p>
+                    <p>
+                        With the ability to search for feat with <q>"bonus to damage" OR "extra damage" -"feat bonus"</q>, it is now possible to build characters using a goal-oriented approach, instead of choosing from valid options.
+                    </p>
+                    <p>
+                        New features are also being added. Preview panel, multi columns, or pick out items and generate a simple sheet such as character power list.
+                        The script also grabs a <a title='Official D&D wallpaper' href='http://www.wizards.com/default.asp?x=dnd/dnd/20030711x'>nice wallpaper</a> through <a href='http://en.wikipedia.org/wiki/Coral_Content_Distribution_Network'>Coral</a>, output fancy CSS styles, data uri icons etc.
+                    </p>
+                    <p>
+                        It helped me a lot in the two years that follows, both as a DM and as a player.
+                    </p>
+                </section>
+                <section lang="en">
+                    <h2> 2<sup>nd</sup> Version </h2>
+                    <figure class='right'>
+                        <a href="https://raw.githubusercontent.com/Sheep-y/trpg-dnd-4e-db/master/res/img/History - 2nd alpha.jpg"><img alt='' src='https://raw.githubusercontent.com/Sheep-y/trpg-dnd-4e-db/master/res/img/History - 2nd alpha.jpg' /></a>
+                        <figcaption>Three screens from left to right. Date: <time>2012-02-17</time></figcaption>
+                    </figure>
+                    <p>
+                        The problem with first version is that it is big and slow even on PC, much less mobile.
+                        "Powers" is a 15MB html file, and the browser has to layout all 8800 powers when it is opened.
+                    </p>
+                    <p>
+                        Thus come the second version, powered by the then prototype <a href="http://jquerymobile.com/‎">jQuery Mobile</a>.
+                        It looks good. Impressive animation, elegance style, familiar icons. An index was created from <a href='http://ails.deviantart.com/art/420-Pixel-Art-Icons-for-RPG-129892453'>Ails' RPG icons</a>, data are processed in multiple threads, and appcache used to preload data.
+                    </p>
+                    <p>
+                        Then disaster struck. Most mobile browser refuse to load local HTML, and Google Chrome disabling a lot of features for local file.
+                        Biggest problem is, jQuery Mobile takes very long time to display entry list (rightmost screen). Two to three times longer then displaying their _contents_ in previous version.
+                        This is when I give up.
+                    </p>
+                    <p>
+                        At least the nice icons are reused in later versions.
+                    </p>
+                </section>
+                <section lang="en">
+                    <h2> 3<sup>rd</sup> Version </h2>
+                    <figure class='left'>
+                        <a href="https://raw.githubusercontent.com/Sheep-y/trpg-dnd-4e-db/master/res/img/History - 3rd alpha.jpg"><img alt='' src='https://raw.githubusercontent.com/Sheep-y/trpg-dnd-4e-db/master/res/img/History - 3rd alpha.jpg' /></a>
+                        <figcaption>Date: <time>2012-05-16</time>, prototype. Later releases look like v3.5.</figcaption>
+                    </figure>
+                    <p>
+                        Third version development started in 2012 Sep, and is a bold experiment in what can JavaScript do.
+                        Instead of letting the official compendium do most of the work, the new version do download, convert, index, everything by itself.
+                    </p>
+                    <p>
+                        Sadly, soon after the first prototype, Firefox <a title="Security Checks and enablePrivilege in Gecko, part 1" href="https://blog.mozilla.org/mrbkap/2012/09/12/">killed file writing</a> permanently. <br />
+                        That leaves IE as the only supported browser, until IE 11 arrives which <a href="https://msdn.microsoft.com/library/dn423948(v=vs.85).aspx">hides</a> (and breaks) file writing too. <br />
+                    </p>
+                    <p>
+                        After playtesting <a href="https://www.wired.com/2012/05/d-d-update-mike-mearls/">D&amp;D Next</a> (5th edition) for a few months, work restarted in May 2013.
+                        With the data split into many small files to speed up access, the second prototype works like a charm.
+                        But then my time diverted to 5e and other games, and major development stopped around May 2014.
+                    </p>
+                </section>
+                <section lang="en">
+                    <h2> 3.5<sup>th</sup> Version </h2>
+                    <figure class='right'>
+                        <a href="https://raw.githubusercontent.com/Sheep-y/trpg-dnd-4e-db/master/res/img/History - v3.5 viewer.png"><img alt='' src='https://raw.githubusercontent.com/Sheep-y/trpg-dnd-4e-db/master/res/img/History - v3.5 viewer.png' /></a>
+                        <figcaption>Date: <time>2016-07-20</time></figcaption>
+                    </figure>
+                    <p>
+                        By 2016, I gave up 5e and switched back. The world changed a lot.
+                        Mobile has overtaken desktop, Internet Explorer <a href='https://blogs.msdn.microsoft.com/ie/2015/02/26/a-break-from-the-past-the-birth-of-microsofts-new-web-rendering-engine/'>is dead</a>,
+                        DDI <a href='http://www.enworld.org/forum/content.php?3087-4e-DnD-Insider-Moving'>has frozen</a> and switched login system,
+                        <a href='https://en.wikipedia.org/wiki/JavaFX'>JavaFX 8</a> brings a <a href='https://docs.oracle.com/javase/8/javafx/api/javafx/scene/web/WebEngine.html'>scriptable browser</a> to standard Java.
+                        Our firstborn is due in October, too, so I better fix the <a href='https://github.com/Sheep-y/trpg-dnd-4e-db/issues/9'>download</a> <a href='https://github.com/Sheep-y/trpg-dnd-4e-db/issues/12'>problems</a> <i>asap</i>.
+                    </p>
+                    <p>
+                        In <a href='https://github.com/Sheep-y/trpg-dnd-4e-db/commit/0fede587e31f7ec90f00e779f906822ddb3413a6#diff-49da3f7f21ed8673cfa993016bea63a7'>July 2016</a>,
+                        a downloader is coded in Java.
+                        Code is simple. No need to check new data, no need to fool security, and clean separation of input and output.
+                        I can fix errors, add new columns, or exclude flavour text from full text search. Things that were too complicated to do in v3.
+                    </p>
+                    <p>
+                        The plan was to bug fix the old viewer and write a new one.
+                        But it works so well, I keep improving it after our baby is born.
+                        As of writing, a new build is released every few months, and over a thousand rule entries has been fixed or enhanced.
+                        I cannot promise to keep up the pace, but if there is something you want, just file a <a href="https://github.com/Sheep-y/trpg-dnd-4e-db/issues">feature request</a> on GitHub.
+                    </p>
+                </section>
+            </article>
+            <article lang="en">
+                <h1 class='i18n'> action.about.h_version_history </h1>
+                <p class="i18n"> action.about.lbl_english_only </p>
+                <dl>
+                    <dt> <a href='https://github.com/Sheep-y/trpg-dnd-4e-db/releases/tag/release/3.6.1'>3.6.1 <time>2017-12-31</time></a> </dt>
+                    <dd> Chrome cross origin request (CORS) script error and other bugs fixed. </dd>
+                    <dt> <a href='https://github.com/Sheep-y/trpg-dnd-4e-db/releases/tag/release/3.6'>3.6.0 <time>2017-12-15</time></a> </dt>
+                    <dd> Regroup Artifact, Lair, and Alchemical items. Add size and type column to companions and monsters. Add Artifact and Item Set rules.
+                        Allow filtering empty columns. Exclude more flavour text from search. Better mobile support and UI.
+                        Reduce file count to 446, supports LZMA+Base85 compression (57MB to 12MB). Allow exporting unfixed data and dumping fixed data.
+                        Total fixed 1560+ entries including regressions. Plus assorted fixes and enhancements. </dd>
+                    <dt> <a href='https://github.com/Sheep-y/trpg-dnd-4e-db/releases/tag/release/3.5.3'>3.5.3 <time>2017-02-02</time></a> </dt>
+                    <dd> Autocomplete in column filters, list power types and race origins, item can be filtered by high level versions, item set text index exclude items, column filter highlight, update checker in viewer.
+                        Add csv, tsv, json, sql, and xlsx dump of raw data. Total fixed 1300+ entries. New columns, assorted fixes and improvements. <a href='https://youtu.be/aNDze9Ok5fE'>First Youtube video</a>. </dd>
+                    <dt> <a href='https://github.com/Sheep-y/trpg-dnd-4e-db/releases/tag/release/3.5.2.1'>3.5.2.1 <time>2016-12-19</time></a> </dt>
+                    <dd> Add raw data export in html and high contrast theme (Windows). Fix new Java compatibility and other bugs. </dd>
+                    <dt> <a href='https://github.com/Sheep-y/trpg-dnd-4e-db/releases/tag/release/3.5.2'>3.5.2 <time>2016-11-19</time></a> </dt>
+                    <dd> Multi-thread export, reduce file count from 25k to 1.8k, split items into four categories, new data columns, internal lookup, and accessibility improvements. Total fixed 530+ entries. </dd>
+                    <dt> <a href='https://github.com/Sheep-y/trpg-dnd-4e-db/releases/tag/release/3.5.1'>3.5.1 <time>2016-07-31</time></a> </dt>
+                    <dd> Implement paging, fix all category list and some search bugs, update entry style and mobile layout, and 370+ entry corrections. </dd>
+                    <dt> <a href='https://github.com/Sheep-y/trpg-dnd-4e-db/releases/tag/release/3.5.0.1'>3.5.0 <time>2016-07-20</time></a> </dt>
+                    <dd> Faster result display; improves layout, highlight, and search. Fix IE 11 and Chrome 51 compatibility. </dd>
+                    <dt> 3.0 M3 <time>2014-05-12</time> </dt>
+                    <dd> Improved search flow, guide, and navigation; implemented filter, sort, next, prev. </dd>
+                    <dt> <a href='https://github.com/Sheep-y/trpg-dnd-4e-db/releases/tag/release/3.0/M2'>3.0 M2 <time>2013-06-25</time></a> </dt>
+                    <dd> Added local data reindex/delete, navbar, responsive layout, simplify data storage, proper download state tracking, sort &amp; style category, background image, style all entries. </dd>
+                    <dt> <a href='https://github.com/Sheep-y/trpg-dnd-4e-db/releases/tag/release/3.0/M1'>3.0 M1 <time>2013-05-29</time></a> </dt>
+                    <dd> Added style for power, content image conversion, help doc, AGPL license, view source, email, regx terms. </dd>
+                    <dt> <a href='https://github.com/Sheep-y/trpg-dnd-4e-db/releases/tag/release/3.0/M0'>3.0 M0 <time>2013-05-25</time></a> </dt>
+                    <dd> Published through Github. Added about page, nav header style. </dd>
+                    <dt> 3.0 Proto 2 <time>2013-05-25</time> </dt>
+                    <dd> Prototype complete after testing on full set of compendium data. </dd>
+                    <dt> 3.0 Design <time>2012-09-09</time> </dt>
+                    <dd> Skeleton code outlining program structure. </dd>
+                </dl>
+            </article>
+        </div>
+        <header role="banner">
+            <button class='i18n' onclick='od.gui.go("list")' accesskey='1'> action.list.link_text </button>
+            <h1 class="i18n"> action.about.title </h1>
+            <button class='i18n top' onclick='scrollTo(0,0)'> gui.top </button>
+        </header>
+    </section>
+    <section id='action_license'>
+        <article lang="en">
+            <h3><a name="terms"></a>TERMS AND CONDITIONS</h3>
+            <h4><a name="section0"></a>0. Definitions.</h4>
+            <p>"This License" refers to version 3 of the GNU Affero General Public License.</p>
+            <p>"Copyright" also means copyright-like laws that apply to other kinds of works, such as semiconductor masks.</p>
+            <p>"The Program" refers to any copyrightable work licensed under this License. Each licensee is addressed as "you". "Licensees" and
+                "recipients" may be individuals or organizations.</p>
+            <p>To "modify" a work means to copy from or adapt all or part of the work in a fashion requiring copyright permission, other than the making of an
+                exact copy. The resulting work is called a "modified version" of the earlier work or a work "based on" the earlier work.</p>
+            <p>A "covered work" means either the unmodified Program or a work based on the Program.</p>
+            <p>To "propagate" a work means to do anything with it that, without permission, would make you directly or secondarily liable for
+                infringement under applicable copyright law, except executing it on a computer or modifying a private copy. Propagation includes copying,
+                distribution (with or without modification), making available to the public, and in some countries other activities as well.</p>
+            <p>To "convey" a work means any kind of propagation that enables other parties to make or receive copies. Mere interaction with a user through
+                a computer network, with no transfer of a copy, is not conveying.</p>
+            <p>An interactive user interface displays "Appropriate Legal Notices" to the extent that it includes a convenient and prominently visible
+                feature that (1) displays an appropriate copyright notice, and (2) tells the user that there is no warranty for the work (except to the
+                extent that warranties are provided), that licensees may convey the work under this License, and how to view a copy of this License. If
+                the interface presents a list of user commands or options, such as a menu, a prominent item in the list meets this criterion.</p>
+            <h4><a name="section1"></a>1. Source Code.</h4>
+            <p>The "source code" for a work means the preferred form of the work for making modifications to it. "Object code" means any non-source
+                form of a work.</p>
+            <p>A "Standard Interface" means an interface that either is an official standard defined by a recognized standards body, or, in the case of
+                interfaces specified for a particular programming language, one that is widely used among developers working in that language.</p>
+            <p>The "System Libraries" of an executable work include anything, other than the work as a whole, that (a) is included in the normal form of
+                packaging a Major Component, but which is not part of that Major Component, and (b) serves only to enable use of the work with that
+                Major Component, or to implement a Standard Interface for which an implementation is available to the public in source code form. A
+                "Major Component", in this context, means a major essential component (kernel, window system, and so on) of the specific operating system
+                (if any) on which the executable work runs, or a compiler used to produce the work, or an object code interpreter used to run it.</p>
+            <p>The "Corresponding Source" for a work in object code form means all the source code needed to generate, install, and (for an executable
+                work) run the object code and to modify the work, including scripts to control those activities. However, it does not include the work's
+                System Libraries, or general-purpose tools or generally available free programs which are used unmodified in performing those activities but
+                which are not part of the work. For example, Corresponding Source includes interface definition files associated with source files for
+                the work, and the source code for shared libraries and dynamically linked subprograms that the work is specifically designed to require,
+                such as by intimate data communication or control flow between those subprograms and other parts of the work.</p>
+            <p>The Corresponding Source need not include anything that users can regenerate automatically from other parts of the Corresponding Source.</p>
+            <p>The Corresponding Source for a work in source code form is that same work.</p>
+            <h4><a name="section2"></a>2. Basic Permissions.</h4>
+            <p>All rights granted under this License are granted for the term of copyright on the Program, and are irrevocable provided the stated
+                conditions are met. This License explicitly affirms your unlimited permission to run the unmodified Program. The output from running a
+                covered work is covered by this License only if the output, given its content, constitutes a covered work. This License acknowledges your
+                rights of fair use or other equivalent, as provided by copyright law.</p>
+            <p>You may make, run and propagate covered works that you do not convey, without conditions so long as your license otherwise remains
+                in force. You may convey covered works to others for the sole purpose of having them make modifications exclusively for you, or provide you
+                with facilities for running those works, provided that you comply with the terms of this License in conveying all material for which you do
+                not control copyright. Those thus making or running the covered works for you must do so exclusively on your behalf, under your direction
+                and control, on terms that prohibit them from making any copies of your copyrighted material outside their relationship with you.</p>
+            <p>Conveying under any other circumstances is permitted solely under the conditions stated below. Sublicensing is not allowed; section 10
+                makes it unnecessary.</p>
+            <h4><a name="section3"></a>3. Protecting Users' Legal Rights From Anti-Circumvention Law.</h4>
+            <p>No covered work shall be deemed part of an effective technological measure under any applicable law fulfilling obligations under article
+                11 of the WIPO copyright treaty adopted on 20 December 1996, or similar laws prohibiting or restricting circumvention of such measures.</p>
+            <p>When you convey a covered work, you waive any legal power to forbid circumvention of technological measures to the extent such circumvention
+                is effected by exercising rights under this License with respect to the covered work, and you disclaim any intention to limit operation or
+                modification of the work as a means of enforcing, against the work's users, your or third parties' legal rights to forbid circumvention of
+                technological measures.</p>
+            <h4><a name="section4"></a>4. Conveying Verbatim Copies.</h4>
+            <p>You may convey verbatim copies of the Program's source code as you receive it, in any medium, provided that you conspicuously and
+                appropriately publish on each copy an appropriate copyright notice; keep intact all notices stating that this License and any
+                non-permissive terms added in accord with section 7 apply to the code; keep intact all notices of the absence of any warranty; and give all
+                recipients a copy of this License along with the Program.</p>
+            <p>You may charge any price or no price for each copy that you convey, and you may offer support or warranty protection for a fee.</p>
+            <h4><a name="section5"></a>5. Conveying Modified Source Versions.</h4>
+            <p>You may convey a work based on the Program, or the modifications to produce it from the Program, in the form of source code under the
+                terms of section 4, provided that you also meet all of these conditions:</p>
+            <ul>
+                <li>a) The work must carry prominent notices stating that you modified it, and giving a relevant date.</li>
+                <li>b) The work must carry prominent notices stating that it is released under this License and any conditions added under section
+                    7. This requirement modifies the requirement in section 4 to "keep intact all notices".</li>
+                <li>c) You must license the entire work, as a whole, under this License to anyone who comes into possession of a copy. This
+                    License will therefore apply, along with any applicable section 7 additional terms, to the whole of the work, and all its parts,
+                    regardless of how they are packaged. This License gives no permission to license the work in any other way, but it does not
+                    invalidate such permission if you have separately received it.</li>
+                <li>d) If the work has interactive user interfaces, each must display Appropriate Legal Notices; however, if the Program has interactive
+                    interfaces that do not display Appropriate Legal Notices, your work need not make them do so.</li>
+            </ul>
+            <p>A compilation of a covered work with other separate and independent works, which are not by their nature extensions of the covered work,
+                and which are not combined with it such as to form a larger program, in or on a volume of a storage or distribution medium, is called an
+                "aggregate" if the compilation and its resulting copyright are not used to limit the access or legal rights of the compilation's users
+                beyond what the individual works permit. Inclusion of a covered work in an aggregate does not cause this License to apply to the other
+                parts of the aggregate.</p>
+            <h4><a name="section6"></a>6. Conveying Non-Source Forms.</h4>
+            <p>You may convey a covered work in object code form under the terms of sections 4 and 5, provided that you also convey the
+                machine-readable Corresponding Source under the terms of this License, in one of these ways:</p>
+            <ul>
+                <li>a) Convey the object code in, or embodied in, a physical product (including a physical distribution medium), accompanied by the
+                    Corresponding Source fixed on a durable physical medium customarily used for software interchange.</li>
+                <li>b) Convey the object code in, or embodied in, a physical product (including a physical distribution medium), accompanied by a
+                    written offer, valid for at least three years and valid for as long as you offer spare parts or customer support for that product
+                    model, to give anyone who possesses the object code either (1) a copy of the Corresponding Source for all the software in the
+                    product that is covered by this License, on a durable physical medium customarily used for software interchange, for a price no
+                    more than your reasonable cost of physically performing this conveying of source, or (2) access to copy the
+                    Corresponding Source from a network server at no charge.</li>
+                <li>c) Convey individual copies of the object code with a copy of the written offer to provide the Corresponding Source. This
+                    alternative is allowed only occasionally and noncommercially, and only if you received the object code with such an offer, in accord
+                    with subsection 6b.</li>
+                <li>d) Convey the object code by offering access from a designated place (gratis or for a charge), and offer equivalent access to the
+                    Corresponding Source in the same way through the same place at no further charge. You need not require recipients to copy the
+                    Corresponding Source along with the object code. If the place to copy the object code is a network server, the Corresponding Source
+                    may be on a different server (operated by you or a third party) that supports equivalent copying facilities, provided you maintain
+                    clear directions next to the object code saying where to find the Corresponding Source. Regardless of what server hosts the
+                    Corresponding Source, you remain obligated to ensure that it is available for as long as needed to satisfy these requirements.</li>
+                <li>e) Convey the object code using peer-to-peer transmission, provided you inform other peers where the object code and Corresponding
+                    Source of the work are being offered to the general public at no charge under subsection 6d.</li>
+            </ul>
+            <p>A separable portion of the object code, whose source code is excluded from the Corresponding Source as a System Library, need not be
+                included in conveying the object code work.</p>
+            <p>A "User Product" is either (1) a "consumer product", which means any tangible personal property which is normally used for personal, family,
+                or household purposes, or (2) anything designed or sold for incorporation into a dwelling. In determining whether a product is a consumer product,
+                doubtful cases shall be resolved in favor of coverage. For a particular product received by a particular user, "normally used" refers to a
+                typical or common use of that class of product, regardless of the status of the particular user or of the way in which the particular user
+                actually uses, or expects or is expected to use, the product. A product is a consumer product regardless of whether the product has substantial
+                commercial, industrial or non-consumer uses, unless such uses represent the only significant mode of use of the product.</p>
+            <p>"Installation Information" for a User Product means any methods, procedures, authorization keys, or other information required to install
+                and execute modified versions of a covered work in that User Product from a modified version of its Corresponding Source. The information must
+                suffice to ensure that the continued functioning of the modified object code is in no case prevented or interfered with solely because
+                modification has been made.</p>
+            <p>If you convey an object code work under this section in, or with, or specifically for use in, a User Product, and the conveying occurs as
+                part of a transaction in which the right of possession and use of the User Product is transferred to the recipient in perpetuity or for a
+                fixed term (regardless of how the transaction is characterized), the Corresponding Source conveyed under this section must be accompanied
+                by the Installation Information. But this requirement does not apply if neither you nor any third party retains the ability to install
+                modified object code on the User Product (for example, the work has been installed in ROM).</p>
+            <p>The requirement to provide Installation Information does not include a requirement to continue to provide support service, warranty, or updates
+                for a work that has been modified or installed by the recipient, or for the User Product in which it has been modified or installed. Access to a
+                network may be denied when the modification itself materially and adversely affects the operation of the network or violates the rules and
+                protocols for communication across the network.</p>
+            <p>Corresponding Source conveyed, and Installation Information provided, in accord with this section must be in a format that is publicly
+                documented (and with an implementation available to the public in source code form), and must require no special password or key for
+                unpacking, reading or copying.</p>
+            <h4><a name="section7"></a>7. Additional Terms.</h4>
+            <p>"Additional permissions" are terms that supplement the terms of this License by making exceptions from one or more of its conditions.
+                Additional permissions that are applicable to the entire Program shall be treated as though they were included in this License, to the extent
+                that they are valid under applicable law. If additional permissions apply only to part of the Program, that part may be used separately
+                under those permissions, but the entire Program remains governed by this License without regard to the additional permissions.</p>
+            <p>When you convey a copy of a covered work, you may at your option remove any additional permissions from that copy, or from any part of
+                it. (Additional permissions may be written to require their own removal in certain cases when you modify the work.) You may place
+                additional permissions on material, added by you to a covered work, for which you have or can give appropriate copyright permission.</p>
+            <p>Notwithstanding any other provision of this License, for material you add to a covered work, you may (if authorized by the copyright holders of
+                that material) supplement the terms of this License with terms:</p>
+            <ul>
+                <li>a) Disclaiming warranty or limiting liability differently from the terms of sections 15 and 16 of this License; or</li>
+                <li>b) Requiring preservation of specified reasonable legal notices or author attributions in that material or in the Appropriate Legal
+                    Notices displayed by works containing it; or</li>
+                <li>c) Prohibiting misrepresentation of the origin of that material, or requiring that modified versions of such material be marked in
+                    reasonable ways as different from the original version; or</li>
+                <li>d) Limiting the use for publicity purposes of names of licensors or authors of the material; or</li>
+                <li>e) Declining to grant rights under trademark law for use of some trade names, trademarks, or service marks; or</li>
+                <li>f) Requiring indemnification of licensors and authors of that material by anyone who conveys the material (or modified versions of
+                    it) with contractual assumptions of liability to the recipient, for any liability that these contractual assumptions directly impose on
+                    those licensors and authors.</li>
+            </ul>
+            <p>All other non-permissive additional terms are considered "further restrictions" within the meaning of section 10. If the Program as you
+                received it, or any part of it, contains a notice stating that it is governed by this License along with a term that is a further restriction,
+                you may remove that term. If a license document contains a further restriction but permits relicensing or conveying under this License, you
+                may add to a covered work material governed by the terms of that license document, provided that the further restriction does not survive such
+                relicensing or conveying.</p>
+            <p>If you add terms to a covered work in accord with this section, you must place, in the relevant source files, a statement of the
+                additional terms that apply to those files, or a notice indicating where to find the applicable terms.</p>
+            <p>Additional terms, permissive or non-permissive, may be stated in the form of a separately written license, or stated as exceptions;
+                the above requirements apply either way.</p>
+            <h4><a name="section8"></a>8. Termination.</h4>
+            <p>You may not propagate or modify a covered work except as expressly provided under this License. Any attempt otherwise to propagate or
+                modify it is void, and will automatically terminate your rights under this License (including any patent licenses granted under the third
+                paragraph of section 11).</p>
+            <p>However, if you cease all violation of this License, then your license from a particular copyright holder is reinstated (a)
+                provisionally, unless and until the copyright holder explicitly and finally terminates your license, and (b) permanently, if the copyright
+                holder fails to notify you of the violation by some reasonable means prior to 60 days after the cessation.</p>
+            <p>Moreover, your license from a particular copyright holder is reinstated permanently if the copyright holder notifies you of the
+                violation by some reasonable means, this is the first time you have received notice of violation of this License (for any work) from that
+                copyright holder, and you cure the violation prior to 30 days after your receipt of the notice.</p>
+            <p>Termination of your rights under this section does not terminate the licenses of parties who have received copies or rights from you under
+                this License. If your rights have been terminated and not permanently reinstated, you do not qualify to receive new licenses for the same
+                material under section 10.</p>
+            <h4><a name="section9"></a>9. Acceptance Not Required for Having Copies.</h4>
+            <p>You are not required to accept this License in order to receive or run a copy of the Program. Ancillary propagation of a covered work
+                occurring solely as a consequence of using peer-to-peer transmission to receive a copy likewise does not require acceptance. However,
+                nothing other than this License grants you permission to propagate or modify any covered work. These actions infringe copyright if you do
+                not accept this License. Therefore, by modifying or propagating a covered work, you indicate your acceptance of this License to do so.</p>
+            <h4><a name="section10"></a>10. Automatic Licensing of Downstream Recipients.</h4>
+            <p>Each time you convey a covered work, the recipient automatically receives a license from the original licensors, to run, modify and
+                propagate that work, subject to this License. You are not responsible for enforcing compliance by third parties with this License.</p>
+            <p>An "entity transaction" is a transaction transferring control of an organization, or substantially all assets of one, or subdividing an
+                organization, or merging organizations. If propagation of a covered work results from an entity transaction, each party to that
+                transaction who receives a copy of the work also receives whatever licenses to the work the party's predecessor in interest had or could
+                give under the previous paragraph, plus a right to possession of the Corresponding Source of the work from the predecessor in interest, if
+                the predecessor has it or can get it with reasonable efforts.</p>
+            <p>You may not impose any further restrictions on the exercise of the rights granted or affirmed under this License. For example, you may
+                not impose a license fee, royalty, or other charge for exercise of rights granted under this License, and you may not initiate litigation
+                (including a cross-claim or counterclaim in a lawsuit) alleging that any patent claim is infringed by making, using, selling, offering for
+                sale, or importing the Program or any portion of it.</p>
+            <h4><a name="section11"></a>11. Patents.</h4>
+            <p>A "contributor" is a copyright holder who authorizes use under this License of the Program or a work on which the Program is based. The
+                work thus licensed is called the contributor's "contributor version".</p>
+            <p>A contributor's "essential patent claims" are all patent claims owned or controlled by the contributor, whether already acquired or
+                hereafter acquired, that would be infringed by some manner, permitted by this License, of making, using, or selling its contributor version,
+                but do not include claims that would be infringed only as a consequence of further modification of the contributor version. For
+                purposes of this definition, "control" includes the right to grant patent sublicenses in a manner consistent with the requirements of
+                this License.</p>
+            <p>Each contributor grants you a non-exclusive, worldwide, royalty-free patent license under the contributor's essential patent claims, to
+                make, use, sell, offer for sale, import and otherwise run, modify and propagate the contents of its contributor version.</p>
+            <p>In the following three paragraphs, a "patent license" is any express agreement or commitment, however denominated, not to enforce a patent
+                (such as an express permission to practice a patent or covenant not to sue for patent infringement). To "grant" such a patent license to a
+                party means to make such an agreement or commitment not to enforce a patent against the party.</p>
+            <p>If you convey a covered work, knowingly relying on a patent license, and the Corresponding Source of the work is not available for anyone
+                to copy, free of charge and under the terms of this License, through a publicly available network server or other readily accessible means,
+                then you must either (1) cause the Corresponding Source to be so available, or (2) arrange to deprive yourself of the benefit of the
+                patent license for this particular work, or (3) arrange, in a manner consistent with the requirements of this License, to extend the patent
+                license to downstream recipients. "Knowingly relying" means you have actual knowledge that, but for the patent license, your conveying the
+                covered work in a country, or your recipient's use of the covered work in a country, would infringe one or more identifiable patents in that
+                country that you have reason to believe are valid.</p>
+            <p>If, pursuant to or in connection with a single transaction or arrangement, you convey, or propagate by procuring conveyance of, a
+                covered work, and grant a patent license to some of the parties receiving the covered work authorizing them to use, propagate, modify
+                or convey a specific copy of the covered work, then the patent license you grant is automatically extended to all recipients of the covered
+                work and works based on it.</p>
+            <p>A patent license is "discriminatory" if it does not include within the scope of its coverage, prohibits the exercise of, or is
+                conditioned on the non-exercise of one or more of the rights that are specifically granted under this License. You may not convey a covered
+                work if you are a party to an arrangement with a third party that is in the business of distributing software, under which you make payment
+                to the third party based on the extent of your activity of conveying the work, and under which the third party grants, to any of the
+                parties who would receive the covered work from you, a discriminatory patent license (a) in connection with copies of the covered work
+                conveyed by you (or copies made from those copies), or (b) primarily for and in connection with specific products or compilations that
+                contain the covered work, unless you entered into that arrangement, or that patent license was granted, prior to 28 March 2007.</p>
+            <p>Nothing in this License shall be construed as excluding or limiting any implied license or other defenses to infringement that may
+                otherwise be available to you under applicable patent law.</p>
+            <h4><a name="section12"></a>12. No Surrender of Others' Freedom.</h4>
+            <p>If conditions are imposed on you (whether by court order, agreement or otherwise) that contradict the conditions of this License, they do not
+                excuse you from the conditions of this License. If you cannot convey a covered work so as to satisfy simultaneously your obligations under this
+                License and any other pertinent obligations, then as a consequence you may not convey it at all. For example, if you agree to terms that obligate you
+                to collect a royalty for further conveying from those to whom you convey the Program, the only way you could satisfy both those terms and this
+                License would be to refrain entirely from conveying the Program.</p>
+            <h4><a name="section13"></a>13. Remote Network Interaction; Use with the GNU General Public License.</h4>
+            <p>Notwithstanding any other provision of this License, if you modify the Program, your modified version must prominently offer all users
+                interacting with it remotely through a computer network (if your version supports such interaction) an opportunity to receive the Corresponding
+                Source of your version by providing access to the Corresponding Source from a network server at no charge, through some standard or customary
+                means of facilitating copying of software. This Corresponding Source shall include the Corresponding Source for any work covered by version 3
+                of the GNU General Public License that is incorporated pursuant to the following paragraph.</p>
+            <p>Notwithstanding any other provision of this License, you have permission to link or combine any covered work with a work licensed under version 3
+                of the GNU General Public License into a single combined work, and to convey the resulting work. The terms of this License will continue to
+                apply to the part which is the covered work, but the work with which it is combined will remain governed by version 3 of the GNU General Public License.</p>
+            <h4><a name="section14"></a>14. Revised Versions of this License.</h4>
+            <p>The Free Software Foundation may publish revised and/or new versions of the GNU Affero General Public License from time to time. Such new
+                versions will be similar in spirit to the present version, but may differ in detail to address new problems or concerns.</p>
+            <p>Each version is given a distinguishing version number. If the Program specifies that a certain numbered version of the GNU Affero
+                General Public License "or any later version" applies to it, you have the option of following the terms and conditions either of that
+                numbered version or of any later version published by the Free Software Foundation. If the Program does not specify a version number
+                of the GNU Affero General Public License, you may choose any version ever published by the Free Software Foundation.</p>
+            <p>If the Program specifies that a proxy can decide which future versions of the GNU Affero General Public License can be used, that
+                proxy's public statement of acceptance of a version permanently authorizes you to choose that version for the Program.</p>
+            <p>Later license versions may give you additional or different permissions. However, no additional obligations are imposed on any
+                author or copyright holder as a result of your choosing to follow a later version.</p>
+            <h4><a name="section15"></a>15. Disclaimer of Warranty.</h4>
+            <p>THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
+                HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+                THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
+                IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.</p>
+            <h4><a name="section16"></a>16. Limitation of Liability.</h4>
+            <p>IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS
+                THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE
+                USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD
+                PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
+                SUCH DAMAGES.</p>
+            <h4><a name="section17"></a>17. Interpretation of Sections 15 and 16.</h4>
+            <p>If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms,
+                reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the
+                Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.</p>
+            <p>END OF TERMS AND CONDITIONS</p>
+        </article>
+        <header role="navigation">
+            <button class='i18n' onclick='od.gui.go("about")' accesskey='1'> action.about.link_text </button>
+            <h1 class="i18n"> action.license.title </h1>
+            <button class='i18n' onclick='scrollTo(0,0)'> gui.top </button>
+        </header>
+    </section>
+    <script>
+        (function() {
+            "use strict";
+            od.action.about = {
+                initialize: function() {
+                    _("#action_about_lst_lang")[0].value = _.l.currentLocale
+                },
+                setup: function() {
+                    od.action.about.change_language(_("#action_about_lst_lang")[0].value), od.gui.toggle_highlight(od.gui.hl_enabled), _("#action_about_lbl_folder")[0].textContent = od.data_path
+                },
+                change_language: function(t) {
+                    _.l.saveLocale(t), _.l.detectLocale("en"), od.gui.l10n()
+                }
+            }, od.action.license = {}
+        })()
+    </script>
+    <script async src="4e_database_files/res/script.js?2017-12-31T10:11:15Z" onload="script_loaded()" onerror="script_error()"></script>
+</body>
+
+</html>

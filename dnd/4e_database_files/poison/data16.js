@@ -1,0 +1,3 @@
+od.reader.jsonp_batch_data(20160803, "poison", {
+    "poison16": "<h1 class=poison>Mindscorch<br><span class=level>Level 15 Poison</span></h1><p class=flavor><i>Brewed from brain matter harvested from mind flayers, this potent toxin shreds the mind.</i></p><p><b>Poison</b>        6250 gp<br><b>Attack:</b> +18 vs. Will; ongoing 10 poison damage and -2 penalty to close or area attack rolls (save ends).<br><b><i>First Failed Saving Throw:</i></b> The target is dazed (save ends).<br></p><p class=publishedIn>Published in Dragon Magazine 367.</p>"
+})

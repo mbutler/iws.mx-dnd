@@ -1,0 +1,3 @@
+od.reader.jsonp_batch_data(20160803, "poison", {
+    "poison13": "<h1 class=poison>Pit Toxin<br><span class=level>Level 25 Poison</span></h1><p class=flavor><i>The fiery red venom from the fangs of a pit fiend sizzles when exposed to air.</i></p><p><b>Poison</b>        156250 gp<br><b>Attack:</b> +28 vs. Fortitude; ongoing 15 poison damage and weakened (save ends both).<br></p><p class=publishedIn>Published in Dungeon Master's Guide, page(s) 51.</p>"
+})

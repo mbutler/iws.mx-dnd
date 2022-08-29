@@ -1,0 +1,3 @@
+od.reader.jsonp_batch_data(20160803, "poison", {
+    "poison12": "<h1 class=poison>Insanity Mist<br><span class=level>Level 20 Poison</span></h1><p class=flavor><i>This fine mist smells cloyingly sweet and attacks the mind.</i></p><p><b>Poison</b>        31250 gp<br><b>Attack:</b> +23 vs. Will; stunned (save ends).<br><b><i>Aftereffect:</i></b> The target is dazed (save ends).<br><b>Special:</b> This poison works only when it is inhaled in mist form.<br></p><p class=publishedIn>Published in Dungeon Master's Guide, page(s) 51.</p>"
+})
