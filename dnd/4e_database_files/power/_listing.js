@@ -7480,7 +7480,7 @@ od.reader.jsonp_data_listing(20130703, "power", ["ID", "Name", "ClassName", "Lev
     ["power12219", "Evoker's Summoning", "Swordmage", "7", "Enc. Attack", "Standard", "Implement, Arcane, Telep, ce, F, tation", "Dra385"],
     ["power16013", "Fettering Aegis", "Swordmage", "7", "Enc. Attack", "Imm. Interrupt", "Implement, Arcane, ce, F", "Dra405"],
     ["power1787", "Flamewall Strike", "Swordmage", "7", "Enc. Attack", "Standard", "Implement, Arcane, Conjuration, Fire", "FRPG"],
-    ["power1728", "Isolating Slam", "Swordmage", "7", "Enc. Attack", "Standard", "Weapon", "FRPG"],
+    ["power1728", "Isolating Slam", "Swordmage", "7", "Enc. Attack", "Standard", "Arcane, Weapon", "FRPG"],
     ["power3947", "Rejuvenating Strike", "Swordmage", "7", "Enc. Attack", "Standard", "Arcane, Healing, Weapon", "AP"],
     ["power3948", "Shatterblade", "Swordmage", "7", "Enc. Attack", "Standard", "Arcane, Weapon", "AP"],
     ["power4802", "Sleet Strike", "Swordmage", "7", "Enc. Attack", "Standard", "Arcane, Cold, Weapon", "Dra367"],
