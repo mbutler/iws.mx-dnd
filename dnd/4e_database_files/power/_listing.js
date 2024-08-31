@@ -65586,7 +65586,7 @@ od.reader.jsonp_data_listing(20130703, "power", ["ID", "Name", "ClassName", "Lev
       "6",
       "Daily Utility",
       "Minor",
-      "Primal, Spirit",
+      "Primal, Spirit, Healing",
       "Dra387"
     ],
     [
