@@ -92914,7 +92914,7 @@ od.reader.jsonp_data_listing(20130703, "power", ["ID", "Name", "ClassName", "Lev
       "Globe of Invulnerability",
       "Wizard",
       "22",
-      "Enc. Utility",
+      "Daily Utility",
       "Minor",
       "Arcane, Conjuration, Force",
       "AP"
