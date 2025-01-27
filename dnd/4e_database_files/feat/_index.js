@@ -5118,7 +5118,7 @@ od.reader.jsonp_data_index(20130616, "feat", {
     feat1990:
         "Foul Torrent Paragon Tier Prerequisite : 11th level, genasi, causticsoul elemental manifestation, acid surge racial power Benefit : As part of your acid surge racial power, you can shift your speed instead of half your speed. Dragon Magazine 380, page(s) 21.",
     feat1708:
-        "Free-Ranging Familiar [Familiar] Heroic Tier Prerequisite : 11th level, artificer, Arcane Familiar feat Benefit : While in active mode, your familiar can exist up to 20 squares farther from you than normal. Dragon Magazine 377, page(s) 35.",
+        "Free-Ranging Familiar [Familiar] Paragon Tier Prerequisite : 11th level, artificer, Arcane Familiar feat Benefit : While in active mode, your familiar can exist up to 20 squares farther from you than normal. Dragon Magazine 377, page(s) 35.",
     feat2214:
         "Frost Breath Paragon Tier Prerequisite : 11th level, dragonborn, dragon breath racial power that deals cold damage Benefit : Each creature hit by your dragon breath is slowed until the end of your next turn. Player's Handbook Races: Dragonborn, page(s) 24.",
     feat3093:
@@ -5250,7 +5250,7 @@ od.reader.jsonp_data_index(20130616, "feat", {
     feat487:
         "Inexorable Pursuit Paragon Tier Prerequisite : 11th level, avenger, Censure of Pursuit class feature, oath of enmity power Benefit : When you charge your oath of enmity target, you can ignore difficult terrain and move through enemies' spaces during the charge. Player's Handbook 2, page(s) 191.",
     feat1069:
-        "Infernal Captain's Fury [Multiclass] Prerequisite : 11th level, warlord, Infernal Captain's Pact, Pact Initiate (infernal pact) Benefit : When you hit a creature under your Infernal Captain's Curse with an attack, you can grant an ally 2d6 extra fire damage if the ally hits with his or her next attack against the creature instead of making the target grant an ally combat advantage on the ally's next attack. Increase the extra damage to 3d6 at 21st level. Dragon Magazine 369, page(s) 55.",
+        "Infernal Captain's Fury [Multiclass] Paragon Tier Prerequisite : 11th level, warlord, Infernal Captain's Pact, Pact Initiate (infernal pact) Benefit : When you hit a creature under your Infernal Captain's Curse with an attack, you can grant an ally 2d6 extra fire damage if the ally hits with his or her next attack against the creature instead of making the target grant an ally combat advantage on the ally's next attack. Increase the extra damage to 3d6 at 21st level. Dragon Magazine 369, page(s) 55.",
     feat854:
         "Infernal Sneak Attack Paragon Tier Prerequisite : 11th level, tiefling, rogue, Sneak Attack class feature Benefit : When you deal your Sneak Attack damage, you can expend your infernal wrath to deal 1d6 extra fire damage for each die of Sneak Attack damage you deal. Martial Power, page(s) 144.",
     feat2506:
