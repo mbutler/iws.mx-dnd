@@ -3042,7 +3042,7 @@ od.reader.jsonp_data_listing(
             "DSCS",
         ],
         ["feat2410", "Draw First Blood", "Heroic", "Any martial class", "MP2"],
-        ["feat2978", "Draw Out The Beast", "Heroic", "Shifter", "Dra387"],
+        ["feat2978", "Draw Out The Beast", "Paragon", "Shifter", "Dra387"],
         [
             "feat3457",
             "Dread of Sakkors",
@@ -8092,7 +8092,7 @@ od.reader.jsonp_data_listing(
         [
             "feat2979",
             "Predatory Spirit",
-            "Heroic",
+            "Paragon",
             "Shifter, longtooth shifting or razorclaw shifting racial power, any primal class",
             "Dra387",
         ],
