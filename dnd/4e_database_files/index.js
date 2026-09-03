@@ -25101,6 +25101,6 @@ od.reader.jsonp_name_index(20160808, {
     "crown of winter": "item3754",
     "rot slinger decayer": "monster115942",
     "fledgling black dragon": "monster115943",
-    "dragonshard augments": "glossary682"
+    "dragonshard augments": "glossary682",
     "bound soul": "associate115"
 })
